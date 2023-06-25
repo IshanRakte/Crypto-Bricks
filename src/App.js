@@ -15,6 +15,19 @@ import config from './config.json';
 
 function App() {
 
+  const [account, setAccount] = useState(null)
+
+  const loadBlockchainData = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+    setAccount(accounts[0])
+    console.log(accounts[0])
+  }
+
+  useEffect(() => {
+    loadBlockchainData()
+  }, [])
+
   return (
     <div>
 
